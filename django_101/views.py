@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import ListView
 
+from django_101.models import Game
+
 
 def index(request):
     title = 'My first Django Project'
@@ -21,3 +23,8 @@ class UsersListView(ListView):
         context = super().get_context_data()
         context['title'] = 'From class view'
         return context
+
+
+class GamesListView(ListView):
+    model = Game
+    template_name = 'games.html'
