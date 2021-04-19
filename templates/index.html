@@ -1,12 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-</head>
-<body>
+{% extends 'Shared/base.html' %}
+
+{% block site_title %}
+    Index page 1
+{% endblock %}
+
+{% block site_main_content %}
     <h1>Does it work</h1>
     <ul>
     {% for user in users %}
@@ -15,5 +13,4 @@
         </li>
     {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
