@@ -1,7 +1,12 @@
 {% extends 'Shared/base.html' %}
+{% load static %}
 
 {% block site_title %}
     Index page 2
+{% endblock %}
+
+{% block site_styles %}
+    <link rel="stylesheet" href="{% static 'css/separate.css' %}">
 {% endblock %}
 
 {% block site_main_content %}
