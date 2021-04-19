@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from django_101.models import Game
+from django_102.models import Game
 
 
 def index(request):
