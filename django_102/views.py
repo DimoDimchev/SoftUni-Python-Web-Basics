@@ -45,3 +45,7 @@ def method_req(request):
         return JsonResponse(context)
 
     return render(request, 'method_req.html', context)
+
+
+def raises_exception(request):
+    raise Exception('Raised')

@@ -7,4 +7,5 @@ urlpatterns = [
     path('games/', GamesListView.as_view()),
     path('test/', test_view),
     path('method/', method_req),
+    path('raises', raises_exception),
 ]
