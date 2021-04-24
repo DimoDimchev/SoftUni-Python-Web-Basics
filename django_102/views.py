@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
@@ -33,3 +33,15 @@ class UsersListView(ListView):
 class GamesListView(ListView):
     model = Game
     template_name = 'games.html'
+
+
+def method_req(request):
+    context = {
+        'name': 'My Name',
+        'age': 17,
+    }
+
+    if request.content_type == 'application/json':
+        return JsonResponse(context)
+
+    return render(request, 'method_req.html', context)

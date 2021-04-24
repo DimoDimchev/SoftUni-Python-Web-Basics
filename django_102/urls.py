@@ -6,4 +6,5 @@ urlpatterns = [
     path('2/', UsersListView.as_view()),
     path('games/', GamesListView.as_view()),
     path('test/', test_view),
+    path('method/', method_req),
 ]
