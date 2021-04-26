@@ -3,7 +3,9 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from django_102.models import Game
+from django_102.models.game import Game
+from django_102.models.person import Person
+from django_102.models.player import Player
 
 
 def test_view(request):
