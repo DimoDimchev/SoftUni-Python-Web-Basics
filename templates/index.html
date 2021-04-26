@@ -7,10 +7,24 @@
 {% block site_main_content %}
     <h1>Does it work</h1>
     <ul>
-    {% for user in users %}
-        <li class="{% cycle 'even' 'odd' %}">
-            {{ user.username }}
-        </li>
-    {% endfor %}
+        {% for user in users %}
+            <li class="{% cycle 'even' 'odd' %}">
+                {{ user.username }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h1>Games go here</h1>
+    <ul>
+        {% if games %}
+            {% for game in games %}
+                <li>
+                    {{ game.name }} : {{ game.get_difficulty_level_display }}
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>
+                <p>No games to show</p>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}

@@ -15,9 +15,12 @@ def test_view(request):
 def index(request):
     title = 'My first Django Project'
     users = User.objects.all()
+    games = Game.objects.all()
+
     context = {
         'title': title,
         'users': users,
+        'games': games,
     }
     return render(request, 'index.html', context)
 
