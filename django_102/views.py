@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
 from django_102.models.game import Game
@@ -15,7 +15,7 @@ def test_view(request):
 def index(request):
     title = 'My first Django Project'
     users = User.objects.all()
-    games = Game.objects.all()
+    games = Game.objects.all_with_players_count()
 
     context = {
         'title': title,
@@ -54,3 +54,9 @@ def method_req(request):
 
 def raises_exception(request):
     raise Exception('Raised')
+
+
+def create_game(request):
+    game = Game(name='CoD', difficulty_level=0)
+    game.save()
+    return redirect(request, 'index')

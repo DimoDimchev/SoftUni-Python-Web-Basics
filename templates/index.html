@@ -18,7 +18,7 @@
         {% if games %}
             {% for game in games %}
                 <li>
-                    {{ game.name }} : {{ game.get_difficulty_level_display }}
+                    {{ game.name }} : Difficulty- {{ game.get_difficulty_level_display }}, Players playing: {{ game.players_count }}
                 </li>
             {% endfor %}
         {% else %}
