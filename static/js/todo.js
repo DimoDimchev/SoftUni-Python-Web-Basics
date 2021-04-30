@@ -1,7 +1,7 @@
-let divElements = document.querySelectorAll('.to_do_item');
+let divElements = document.querySelectorAll('.toggle');
 
 divElements.forEach((element) => {
-    let contentDiv = element.children[1];
+    let contentDiv = element.nextElementSibling;
     element.addEventListener('click', (e) => {
         if (contentDiv.style.display === 'none') {
             contentDiv.style.display = 'block';
