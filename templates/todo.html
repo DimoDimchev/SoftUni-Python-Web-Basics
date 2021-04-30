@@ -11,14 +11,17 @@
     <h1>ToDo App</h1>
     {% for to_do in todos %}
         <div class="to_do_item">
-            <h2>{{ to_do.title }}</h2>
-            <p><i>{{ to_do.description }}</i></p>
-            {% if to_do.is_done %}
+            <a href="#" class="toggle"><h2>{{ to_do.title }}</h2></a>
+            <div class="content">
+                <p><i>{{ to_do.description }}</i></p>
+                {% if to_do.is_done %}
                 <a href="#" class="done">Task done</a>
                 {% else %}
                 <a href="#" class="not_done">Task not done</a>
             {% endif %}
+            </div>
         </div>
     {% endfor %}
+    <script src="{% static 'js/todo.js' %}"></script>
 </body>
 </html>
