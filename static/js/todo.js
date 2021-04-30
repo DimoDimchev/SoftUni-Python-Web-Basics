@@ -7,7 +7,6 @@ divElements.forEach((element) => {
             contentDiv.style.display = 'block';
         } else {
             contentDiv.style.display = 'none';
-
         }
     });
 });
