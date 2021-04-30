@@ -9,6 +9,10 @@
 </head>
 <body>
     <h1>ToDo App</h1>
+    <form action="/" method="post">
+        {{ todo_form }}
+        <button>Create ToDo</button>
+    </form>
     {% for to_do in todos %}
         <div class="to_do_item">
             <h2 class="toggle">{{ to_do.title }}</h2>
