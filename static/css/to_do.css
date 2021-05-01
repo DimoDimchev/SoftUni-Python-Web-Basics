@@ -12,6 +12,10 @@ h2{
 }
 
 div{
+
+}
+
+.to_do_item{
     margin: 2rem 5rem;
     padding: 10px 10px;
     border: 3px solid #6495ed;
@@ -33,4 +37,13 @@ a{
 
 .not_done{
     color: red;
+}
+
+form{
+    margin: 2rem 5rem;
+    text-align: left;
+}
+
+.form-control{
+    width: 40%;
 }
