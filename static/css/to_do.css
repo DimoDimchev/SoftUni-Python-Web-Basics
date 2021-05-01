@@ -11,10 +11,6 @@ h2{
     cursor: pointer;
 }
 
-div{
-
-}
-
 .to_do_item{
     margin: 2rem;
     padding: 10px 10px;
@@ -27,10 +23,6 @@ div{
     border: none;
 }
 
-a{
-    text-decoration: none;
-}
-
 .done{
     color: green;
 }
@@ -39,7 +31,12 @@ a{
     color: red;
 }
 
-form{
+#main_form{
     margin: 2rem;
     text-align: left;
+}
+
+a{
+    text-decoration: none;
+    margin: 0 1rem;
 }

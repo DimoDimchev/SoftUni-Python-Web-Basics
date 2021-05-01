@@ -12,7 +12,11 @@
     <h1>ToDo App</h1>
     <div class="row">
         <div class="col-3">
-            <form action="{% url 'create task' %}" method="post">
+            {% if pk %}
+                <form id="main_form" action="{% url form_action pk %}" method="post">
+            {% else %}
+                <form id="main_form" action="{% url form_action %}" method="post">
+            {% endif %}
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="{{ todo_form.title.id_for_label }}" class="form-label">Title</label>
@@ -37,10 +41,20 @@
             <div class="content" style="display: none">
                 <p><i>{{ to_do.description }}</i></p>
                 {% if to_do.is_done %}
-                <p class="done">Task done</p>
+                    <p class="done">Task done</p>
                 {% else %}
-                <p class="not_done">Task not done</p>
-            {% endif %}
+                    <p class="not_done">Task not done</p>
+                {% endif %}
+                <form action="{% url 'do task' to_do.id %}" method="post">
+                    {% csrf_token %}
+                    {% if to_do.is_done%}
+                        <button class="btn btn-danger">Undo task</button>
+                    {% else %}
+                        <button class="btn btn-success">Do task</button>
+                    {% endif %}
+                    <a href="{% url 'edit todo' to_do.id %}">Edit</a>
+                    <a href="{% url 'delete todo' to_do.id %}">Delete</a>
+                </form>
             </div>
         </div>
     {% endfor %}

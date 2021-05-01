@@ -1,11 +1,6 @@
 from django import forms
 
 
-def min_validator(value):
-    if not value or len(value) < 10:
-        raise forms.ValidationError(f"Value should be more than 10 characters. Now it is {len(value)}")
-
-
 class TodoForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,9 +28,6 @@ class TodoForm(forms.Form):
             attrs={
                 'class': '',
             }),
-        validators=(
-            min_validator,
-        ),
         required=False)
 
     bot_catcher = forms.CharField(
