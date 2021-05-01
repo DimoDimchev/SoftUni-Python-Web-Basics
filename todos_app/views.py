@@ -19,7 +19,7 @@ def create_task(request):
     form = TodoForm(request.POST)
 
     if form.is_valid():
-        task = ToDo(**form.cleaned_data, is_done=False)
+        task = ToDo(title=form.cleaned_data['title'], description=form.cleaned_data['description'], is_done=False)
         task.save()
         return redirect('todo index')
 

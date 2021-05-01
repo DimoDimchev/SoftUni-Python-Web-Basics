@@ -16,9 +16,29 @@ class TodoForm(forms.Form):
                 value = ' form-control'
             field.widget.attrs['class'] = value
 
-    title = forms.CharField(max_length=30, widget=forms.TextInput(attrs={
-        'class': '',
-    }), required=True)
-    description = forms.CharField(widget=forms.Textarea(attrs={
-        'class': '',
-    }), validators=(min_validator,), required=False)
+    def clean_bot_catcher(self):
+        if self.cleaned_data['bot_catcher']:
+            raise forms.ValidationError('This is a bot')
+
+    title = forms.CharField(
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': '',
+            }),
+        required=True)
+
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': '',
+            }),
+        validators=(
+            min_validator,
+        ),
+        required=False)
+
+    bot_catcher = forms.CharField(
+        widget=forms.HiddenInput,
+        required=False
+    )
