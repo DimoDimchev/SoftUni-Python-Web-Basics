@@ -1,6 +1,11 @@
 from django import forms
 
 
+def min_validator(value):
+    if not value or len(value) < 10:
+        raise forms.ValidationError(f"Value should be more than 10 characters. Now it is {len(value)}")
+
+
 class TodoForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,4 +21,4 @@ class TodoForm(forms.Form):
     }), required=True)
     description = forms.CharField(widget=forms.Textarea(attrs={
         'class': '',
-    }), required=False)
+    }), validators=(min_validator,), required=False)
