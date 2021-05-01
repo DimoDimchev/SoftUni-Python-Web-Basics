@@ -25,7 +25,7 @@ def create_task(request):
 
     context = {
         'todos': ToDo.objects.all(),
-        'todo_form': TodoForm(),
+        'todo_form': form,
     }
 
     return render(request, 'todo.html', context)
