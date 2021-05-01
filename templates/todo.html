@@ -10,18 +10,22 @@
 </head>
 <body>
     <h1>ToDo App</h1>
-    <form action="/" method="post">
+    <div class="row">
+        <div class="col-3">
+            <form action="{% url 'create task' %}" method="post">
         <div class="mb-3">
             <label for="{{ todo_form.title.id_for_label }}" class="form-label">Title</label>
             <input type="text" class="form-control" id="{{ todo_form.title.id_for_label }}">
         </div>
         <div class="mb-3">
             <label for="{{ todo_form.description.id_for_label }}" class="form-label">Description</label>
-            <input type="text" class="form-control" id="{{ todo_form.description.id_for_label }}">
+            <textarea class="form-control" id="{{ todo_form.description.id_for_label }}"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary">Submit</button>
     </form>
-    {% for to_do in todos %}
+        </div>
+        <div class="col-9">
+            {% for to_do in todos %}
         <div class="to_do_item">
             <h2 class="toggle">{{ to_do.title }}</h2>
             <div class="content" style="display: none">
@@ -34,6 +38,8 @@
             </div>
         </div>
     {% endfor %}
+        </div>
+    </div>
     <script src="{% static 'js/todo.js' %}"></script>
 </body>
 </html>
