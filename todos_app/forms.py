@@ -2,8 +2,8 @@ from django import forms
 
 
 class TodoForm(forms.Form):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         for (field_name, field) in self.fields.items():
             if 'class' in field.widget.attrs:
                 value = field.widget.attrs['class'] + ' form-control'
