@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from books.forms import BookForm
@@ -20,9 +19,32 @@ def create(request):
         }
         return render(request, 'books/create.html', context)
     else:
-        # save form
-        pass
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            context = {
+                'form': form,
+            }
+            return render(request, 'books/create.html', context)
 
 
 def edit(request, pk):
-    pass
+    book = Book.objects.get(pk=pk)
+    if request.method == 'GET':
+        form = BookForm(instance=book)
+        context = {
+            'form': form,
+        }
+        return render(request, 'books/edit.html', context)
+    else:
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            context = {
+                'form': form,
+            }
+            return render(request, 'books/edit.html', context)
