@@ -13,31 +13,19 @@ def index(request):
 
 
 def create(request):
-    if request.method == 'GET':
-        context = {
-            'form': BookForm(),
-        }
-        return render(request, 'books/create.html', context)
-    else:
-        form = BookForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-        else:
-            context = {
-                'form': form,
-            }
-            return render(request, 'books/create.html', context)
+    return persist(request, Book(), 'create')
 
 
 def edit(request, pk):
-    book = Book.objects.get(pk=pk)
+    return persist(request, Book.objects.get(pk=pk), 'edit')
+
+
+def persist(request, book, template_name):
     if request.method == 'GET':
-        form = BookForm(instance=book)
         context = {
-            'form': form,
+            'form': BookForm(instance=book),
         }
-        return render(request, 'books/edit.html', context)
+        return render(request, f'books/{template_name}.html', context)
     else:
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
@@ -47,4 +35,4 @@ def edit(request, pk):
             context = {
                 'form': form,
             }
-            return render(request, 'books/edit.html', context)
+            return render(request, f'books/{template_name}.html', context)
