@@ -43,3 +43,22 @@ class ProfileViewsTests(TestCase):
 
         response = self.test_client.post(reverse('profiles'), data=data)
         self.assertRedirects(response, reverse('profiles'))
+
+    def test_postIndex_whenEgnContainsLetter_shouldRenderIndexAndContainError(self):
+        egn = '123456789a'
+        name = 'Dimo'
+        age = 18
+        data = {
+            'name': name,
+            'age': age,
+            'egn': egn,
+        }
+
+        response = self.test_client.post(reverse('profiles'), data=data)
+        profiles = response.context['profiles']
+        form = response.context['form']
+
+        self.assertTemplateUsed(response, 'testing.html')
+        self.assertEqual(0, len(profiles))
+        self.assertIsNotNone(form)
+        self.assertIsNotNone(form.errors['egn'])
